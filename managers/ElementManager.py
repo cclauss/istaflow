@@ -47,11 +47,9 @@ class ElementManager (object):
 	def create_element(self, title):
 		titleValidated = title.replace(" ","")
 		templatePath = self.elementsFolder + '/Template.py'
-		f = open(templatePath, 'r')
-		tem = f.read()
+		with open(templatePath, 'r') as f:
+			tem = f.read()
 		print tem
 		tem = tem.replace("{{title}}",titleValidated)
-		f.close()
-		f = open(self.elementsFolder+'/'+titleValidated+'.py','w')
-		f.write(tem)
-		f.close()
+		with open(self.elementsFolder+'/'+titleValidated+'.py','w') as f:
+			f.write(tem)
